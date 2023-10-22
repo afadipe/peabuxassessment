@@ -13,6 +13,6 @@ public class Teacher : BaseEntity
     public string TeacherNumber { get; set; }
     public decimal Salary { get; set; }
     [ForeignKey(nameof(User))]
-    public Guid UserId { get; set; }
+    public string UserId { get; set; }
     public User User { get; set; }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 using Peabux.API.Extensions.Shared;
+using Peabux.Infrastructure.Services;
 
 namespace Peabux.API.Extensions;
 
@@ -35,6 +36,7 @@ public static class RegisterDependentServices
         builder.Services.ConfigureIdentity();
         builder.Services.ConfigureJWTAuthentication();;
         builder.Services.ConfigureSwagger();
+        builder.Services.AddScoped<IAuthService, AuthService>();
 
         return builder;
     }

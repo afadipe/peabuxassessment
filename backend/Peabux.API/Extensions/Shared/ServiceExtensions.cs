@@ -10,6 +10,7 @@ using Asp.Versioning;
 using Peabux.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Configuration;
 
 namespace Peabux.API.Extensions.Shared;
 
@@ -38,16 +39,7 @@ public static class ServiceExtensions
 
 
     public static void ConfigureDBContext(this IServiceCollection @this, IConfiguration configuration) =>
-    @this.AddDbContextFactory<AppDBContext>(opts =>
-    {
-        var connectionString = configuration.GetConnectionString("DBConnection");
-        opts.UseNpgsql(connectionString, o =>
-        {
-            o.MigrationsAssembly("Peabux.Infrastructure");
-        });
-    });
-
-
+        @this.AddDbContextFactory<AppDBContext>(opts => opts.UseNpgsql(configuration.GetConnectionString("DBConnection")));
 
 
     public static void ConfigureVersioning(this IServiceCollection services)=> 
