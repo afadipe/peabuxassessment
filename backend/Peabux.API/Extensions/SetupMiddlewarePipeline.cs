@@ -13,16 +13,6 @@ public static class SetupMiddlewarePipeline
             s.SwaggerEndpoint("/swagger/v1/swagger.json", "Peabux Assessment API v1");
         });
 
-        //using (var serviceScope = app.Services.CreateScope())
-        //{
-        //    using (var dbContext = serviceScope.ServiceProvider.GetRequiredService<RepositoryContext>())
-        //    {
-        //        if (dbContext.Database.GetPendingMigrations().Any())
-        //            dbContext.Database.Migrate();
-        //    }
-        //}
-
-
         //app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseForwardedHeaders(new ForwardedHeadersOptions

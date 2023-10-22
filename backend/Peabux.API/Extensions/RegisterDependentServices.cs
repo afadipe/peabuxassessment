@@ -1,6 +1,10 @@
 ﻿using System.Text.Json.Serialization;
 using Peabux.API.Extensions.Shared;
+using Peabux.Domain.Dtos;
 using Peabux.Infrastructure.Services;
+using Peabux.Presentation.ActionFilters;
+using FluentValidation;
+ 
 
 namespace Peabux.API.Extensions;
 
@@ -31,12 +35,14 @@ public static class RegisterDependentServices
         builder.Services.ConfigureIISIntegration();
         builder.Services.ConfigureDBContext(builder.Configuration);
         builder.Services.AddAutoMapper(typeof(Program));
+       // builder.Services.AddScoped<ValidationFilterAttribute>();
         builder.Services.ConfigureVersioning();
         builder.Services.AddAuthentication();
         builder.Services.ConfigureIdentity();
         builder.Services.ConfigureJWTAuthentication();;
         builder.Services.ConfigureSwagger();
         builder.Services.AddScoped<IAuthService, AuthService>();
+        builder.Services.AddValidatorsFromAssemblyContaining<RegistrationValidator>();
 
         return builder;
     }

@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Peabux.Domain.Dtos;
-using Peabux.Domain.Entities;
 using Peabux.Infrastructure.Services;
 
 namespace Peabux.Presentation.Controllers;
@@ -13,6 +13,9 @@ public class AuthController : ControllerBase
     public AuthController(IAuthService authService) => _authService = authService;
 
     [HttpPost("login")]
+    [ProducesResponseType(typeof(IEnumerable<TokenDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequestDto login)
     {
         if (!ModelState.IsValid)
@@ -24,5 +27,24 @@ public class AuthController : ControllerBase
         var tokenDto = await _authService.CreateToken(populateExp: true);
 
         return Ok(tokenDto);
+    }
+
+    [HttpPost("register")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RegisterUser([FromBody] RegistrationDto register)
+    {
+        var result = await _authService.RegisterUser(register);
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.TryAddModelError(error.Code, error.Description);
+            }
+            return BadRequest(ModelState);
+        }
+
+        return StatusCode(201);
     }
 }
