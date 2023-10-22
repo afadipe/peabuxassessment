@@ -4,7 +4,7 @@ using Peabux.Domain.Dtos;
 using Peabux.Infrastructure.Services;
 using Peabux.Presentation.ActionFilters;
 using FluentValidation;
- 
+using FluentValidation.AspNetCore;
 
 namespace Peabux.API.Extensions;
 
@@ -28,13 +28,13 @@ public static class RegisterDependentServices
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 
         })
-        .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
-
+        .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
+        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegistrationValidator>());
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.ConfigureCors();
         builder.Services.ConfigureIISIntegration();
         builder.Services.ConfigureDBContext(builder.Configuration);
-        builder.Services.AddAutoMapper(typeof(Program));
+        builder.Services.AddAutoMapper(typeof(Infrastructure.AutoMapperProfile.MappingProfile));
        // builder.Services.AddScoped<ValidationFilterAttribute>();
         builder.Services.ConfigureVersioning();
         builder.Services.AddAuthentication();
@@ -42,7 +42,7 @@ public static class RegisterDependentServices
         builder.Services.ConfigureJWTAuthentication();;
         builder.Services.ConfigureSwagger();
         builder.Services.AddScoped<IAuthService, AuthService>();
-        builder.Services.AddValidatorsFromAssemblyContaining<RegistrationValidator>();
+        
 
         return builder;
     }

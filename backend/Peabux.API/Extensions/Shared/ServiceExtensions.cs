@@ -60,7 +60,11 @@ public static class ServiceExtensions
             o.Password.RequireUppercase = false;
             o.Password.RequireNonAlphanumeric = false;
             o.Password.RequiredLength = 10;
-            o.User.RequireUniqueEmail = true;
+            o.User.RequireUniqueEmail = false;
+            o.Password.RequiredUniqueChars = 0;
+            // Signin settings
+            o.SignIn.RequireConfirmedEmail = false;
+            o.SignIn.RequireConfirmedPhoneNumber = false;
         })
         .AddEntityFrameworkStores<AppDBContext>()
         .AddDefaultTokenProviders();
