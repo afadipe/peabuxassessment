@@ -21,10 +21,29 @@ function Register() {
     NationIdNumber: "",
     Password: "",
     ConfirmPassword: "",
+    Role: "",
+    TeacherNumber: "",
+    Title: 0,
+    Salary: 0,
+    StudentNumber: "",
+    showTeacherOption: false,
+    showStudentOption: false,
   });
 
-  const { FirstName, Surname, NationIdNumber, Password, ConfirmPassword } =
-    formData;
+  const {
+    FirstName,
+    Surname,
+    NationIdNumber,
+    Password,
+    ConfirmPassword,
+    Role,
+    TeacherNumber,
+    Title,
+    Salary,
+    StudentNumber,
+    showTeacherOption,
+    showStudentOption,
+  } = formData;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,6 +69,24 @@ function Register() {
     }));
   };
 
+  const onRoleChange = (e) => {
+    //e.preventDefault();
+    const newform = { ...formData };
+    if (e.target.value === "Teacher") {
+      newform.showTeacherOption = true;
+      newform.showStudentOption = false;
+    } else if (e.target.value === "Student") {
+      newform.showTeacherOption = false;
+      newform.showStudentOption = true;
+    } else {
+      newform.showTeacherOption = false;
+      newform.showStudentOption = false;
+    }
+    newform.Role = e.target.value;
+    setFormData(newform);
+    console.log(e.target.value);
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (Password !== ConfirmPassword) {
@@ -61,6 +98,11 @@ function Register() {
         NationIdNumber,
         Password,
         ConfirmPassword,
+        Role,
+        TeacherNumber,
+        Title,
+        Salary,
+        StudentNumber,
       };
       dispatch(register(userData));
     }
@@ -146,6 +188,96 @@ function Register() {
               placeholder="Enter your ConfirmPassword"
             />
           </div>
+
+          <div className="form-group">
+            <select
+              required
+              name="Role"
+              value={Role}
+              id="Role"
+              onChange={onRoleChange}
+            >
+              <option name="Role">Select Role</option>
+              <option value="Teacher" name="Role">
+                Teacher
+              </option>
+              <option value="Student" name="Role">
+                Student
+              </option>
+            </select>
+          </div>
+
+          {showTeacherOption ? (
+            <>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="TeacherNumber"
+                  name="TeacherNumber"
+                  required
+                  value={TeacherNumber}
+                  onChange={onChange}
+                  placeholder="Enter your TeacherNumber"
+                />
+              </div>
+
+              <div className="form-group">
+                <select
+                  required
+                  name="Title"
+                  onChange={onChange}
+                  value={Title}
+                  id="Title"
+                >
+                  <option name="Title">Select Title</option>
+                  <option value="1" name="Title">
+                    Mr
+                  </option>
+                  <option value="2" name="Title">
+                    Mrs
+                  </option>
+                  <option value="3" name="Title">
+                    Miss
+                  </option>
+                  <option value="4" name="Title">
+                    Prof
+                  </option>
+                  <option value="5" name="Title">
+                    Dr
+                  </option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <input
+                  type="number"
+                  className="form-control"
+                  id="Salary"
+                  name="Salary"
+                  required
+                  value={TeacherNumber}
+                  onChange={onChange}
+                  placeholder="Enter your Salary"
+                />
+              </div>
+            </>
+          ) : null}
+
+          {showStudentOption ? (
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="StudentNumber"
+                name="StudentNumber"
+                required
+                value={StudentNumber}
+                onChange={onChange}
+                placeholder="Enter your StudentNumber"
+              />
+            </div>
+          ) : null}
 
           <div className="form-group">
             <button className="btn btn-block"> Submit</button>
