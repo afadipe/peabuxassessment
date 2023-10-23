@@ -16,6 +16,8 @@ public class AppDBContext : IdentityDbContext<User>
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        modelBuilder.ApplyConfiguration(new TeacherConfiguration());
+        modelBuilder.ApplyConfiguration(new StudentConfiguration());
     }
 
     public DbSet<Student> Students { get; set; }
