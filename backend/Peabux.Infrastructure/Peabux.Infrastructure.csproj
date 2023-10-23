@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Peabux.Core\Peabux.Domain.csproj" />
+    <ProjectReference Include="..\Peabux.Core\Peabux.Core.csproj" />
   </ItemGroup>
 
 </Project>

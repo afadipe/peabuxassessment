@@ -10,7 +10,6 @@ using Asp.Versioning;
 using Peabux.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Configuration;
 
 namespace Peabux.API.Extensions.Shared;
 

@@ -13,9 +13,7 @@ public class AuthController : ControllerBase
     public AuthController(IAuthService authService) => _authService = authService;
 
     [HttpPost("login")]
-    [ProducesResponseType(typeof(IEnumerable<TokenDto>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequestDto login)
     {
         if (!ModelState.IsValid)

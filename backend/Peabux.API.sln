@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.API", "Peabux.API\Pe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Presentation", "Peabux.Presentation\Peabux.Presentation.csproj", "{09E9530B-8C45-41C1-A31A-F6075DF7460A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Domain", "Peabux.Core\Peabux.Domain.csproj", "{D6AE81DE-6249-41AE-8DA3-385BEA8297F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Core", "Peabux.Core\Peabux.Core.csproj", "{D6AE81DE-6249-41AE-8DA3-385BEA8297F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Infrastructure", "Peabux.Infrastructure\Peabux.Infrastructure.csproj", "{60B6CA99-D44C-491A-BE1C-B0E30BD0DFC2}"
 EndProject
