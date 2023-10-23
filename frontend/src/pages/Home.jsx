@@ -11,7 +11,6 @@ function Home() {
         </h1>
       </section>
       <Link to="/register" className="btn btn-reverse btn-block">
-        {" "}
         <FaUser /> Register
       </Link>
     </>
