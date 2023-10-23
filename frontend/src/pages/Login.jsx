@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FaSign } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { login } from "../features/auth/authSlice";
+import { login, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
 // interface RegisterFormState {
 //   FirstName: string,
@@ -20,9 +23,22 @@ function Login() {
   const { NationIdNumber, Password } = formData;
 
   const dispatch = useDispatch();
-  const { user, isLoading, isSuccess, message } = useSelector(
+  const navigate = useNavigate();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+    dispatch(reset());
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -39,6 +55,10 @@ function Login() {
     };
     dispatch(login(userData));
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
