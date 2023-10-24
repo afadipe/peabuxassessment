@@ -18,9 +18,10 @@ function Register() {
   const [formData, setFormData] = useState({
     FirstName: "",
     Surname: "",
-    NationIdNumber: "",
+    NationalIdNumber : "",
     Password: "",
     ConfirmPassword: "",
+    DateOfBirth: "",
     Role: "",
     TeacherNumber: "",
     Title: 0,
@@ -33,9 +34,10 @@ function Register() {
   const {
     FirstName,
     Surname,
-    NationIdNumber,
+    NationalIdNumber ,
     Password,
     ConfirmPassword,
+    DateOfBirth,
     Role,
     TeacherNumber,
     Title,
@@ -55,8 +57,8 @@ function Register() {
     if (isError) {
       toast.error(message);
     }
-
     if (isSuccess) {
+      toast.success('Registration was successfully');
       navigate("/");
     }
     dispatch(reset());
@@ -89,15 +91,25 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(Password <= 3 ){
+      toast.error("Password minimum length must 3");
+    }
+    var age = calculate_age(DateOfBirth);
+    if (Role === "Teacher" && age <= 22) {
+      toast.error("Teacher age must be greater than or equal to 22 year");
+    } else if (Role === "Student"  && age > 21) {
+      toast.error("Student age must be less than 21 year");
+    }
     if (Password !== ConfirmPassword) {
       toast.error("Password and ConfirmPassword do not match");
     } else {
       const userData = {
         FirstName,
         Surname,
-        NationIdNumber,
+        NationalIdNumber ,
         Password,
         ConfirmPassword,
+        DateOfBirth,
         Role,
         TeacherNumber,
         Title,
@@ -110,6 +122,13 @@ function Register() {
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  function calculate_age(dob)
+  {
+    var today = new Date();
+    var birthDate = new Date(dob);  
+    return today.getFullYear() - birthDate.getFullYear();
   }
 
   return (
@@ -151,17 +170,17 @@ function Register() {
           </div>
 
           <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="NationIdNumber"
-              name="NationIdNumber"
-              required
-              value={NationIdNumber}
-              onChange={onChange}
-              placeholder="Enter your NationIdNumber"
-            />
-          </div>
+              <input
+                type="text"
+                className="form-control"
+                id="NationalIdNumber"
+                name="NationalIdNumber"
+                required
+                value={NationalIdNumber}
+                onChange={onChange}
+                placeholder="Enter your NationalIdNumber"
+              />
+            </div>
 
           <div className="form-group">
             <input
@@ -188,6 +207,19 @@ function Register() {
               placeholder="Enter your ConfirmPassword"
             />
           </div>
+
+          <label>Select Date of Birth</label>
+           <div className="form-group">
+           <input
+              type="date"
+              className="form-control"
+              id="DateOfBirth"
+              name="DateOfBirth"
+              required
+              value={DateOfBirth}
+              onChange={onChange}
+            />
+           </div>
 
           <div className="form-group">
             <select
@@ -256,7 +288,7 @@ function Register() {
                   id="Salary"
                   name="Salary"
                   required
-                  value={TeacherNumber}
+                  value={Salary}
                   onChange={onChange}
                   placeholder="Enter your Salary"
                 />

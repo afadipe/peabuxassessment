@@ -1,10 +1,14 @@
 import axios, { HttpStatusCode } from "axios";
-const API_URL = "api/users/";
+const API_URL = "https://localhost:62414/api/authentication/";
 
 //Register User
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData);
-  if (response.data.status === HttpStatusCode.Created) return "Created";
+  console.log('logging register data')
+  console.log({userData})
+  const response = await axios.post(API_URL + "register", userData);
+  console.log('register log')
+  console.log({response})
+ // if (response.data.status === HttpStatusCode.Created) return "Created";
   return response.data;
 };
 

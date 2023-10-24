@@ -7,7 +7,7 @@ function Home() {
       <section className="heading">
         <h1>Hello , welcome</h1>
         <h1>
-          Both Teacher and Student should use the register link to register
+          Both Teacher's and Student's should use the link below to create an account
         </h1>
       </section>
       <Link to="/register" className="btn btn-reverse btn-block">
