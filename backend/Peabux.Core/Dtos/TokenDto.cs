@@ -1,3 +1,7 @@
 ﻿
 namespace Peabux.Domain.Dtos;
-public record TokenDto(string AccessToken, string RefreshToken);
+public class TokenDto
+{
+    public string AccessToken { get; set; }
+    public string RefreshToken { get; set; }
+};

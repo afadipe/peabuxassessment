@@ -14,5 +14,9 @@ public class TokenController : ControllerBase
 
     [HttpPost("refresh")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<IActionResult> Refresh([FromBody] TokenDto tokenDto) =>  Ok(await _authService.RefreshToken(tokenDto));
+    public async Task<IActionResult> Refresh([FromBody] TokenDto tokenDto) 
+    {
+        var token =await _authService.RefreshToken(tokenDto);
+        return (token == null) ? BadRequest("Invalid Request") : Ok(token);
+    } 
 }

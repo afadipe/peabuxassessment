@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.API", "Peabux.API\Peabux.API.csproj", "{00F00E31-A9CC-4EF4-AE75-53D48D483073}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peabux.API", "Peabux.API\Peabux.API.csproj", "{00F00E31-A9CC-4EF4-AE75-53D48D483073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Presentation", "Peabux.Presentation\Peabux.Presentation.csproj", "{09E9530B-8C45-41C1-A31A-F6075DF7460A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peabux.Presentation", "Peabux.Presentation\Peabux.Presentation.csproj", "{09E9530B-8C45-41C1-A31A-F6075DF7460A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Core", "Peabux.Core\Peabux.Core.csproj", "{D6AE81DE-6249-41AE-8DA3-385BEA8297F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peabux.Core", "Peabux.Core\Peabux.Core.csproj", "{D6AE81DE-6249-41AE-8DA3-385BEA8297F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.Infrastructure", "Peabux.Infrastructure\Peabux.Infrastructure.csproj", "{60B6CA99-D44C-491A-BE1C-B0E30BD0DFC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Peabux.Infrastructure", "Peabux.Infrastructure\Peabux.Infrastructure.csproj", "{60B6CA99-D44C-491A-BE1C-B0E30BD0DFC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peabux.UnitTests", "Peabux.UnitTests\Peabux.UnitTests.csproj", "{632D7448-73F4-407E-85B5-B961B4634B52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{60B6CA99-D44C-491A-BE1C-B0E30BD0DFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60B6CA99-D44C-491A-BE1C-B0E30BD0DFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60B6CA99-D44C-491A-BE1C-B0E30BD0DFC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{632D7448-73F4-407E-85B5-B961B4634B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{632D7448-73F4-407E-85B5-B961B4634B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{632D7448-73F4-407E-85B5-B961B4634B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{632D7448-73F4-407E-85B5-B961B4634B52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

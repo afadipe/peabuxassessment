@@ -2,8 +2,6 @@
 using Peabux.API.Extensions.Shared;
 using Peabux.Domain.Dtos;
 using Peabux.Infrastructure.Services;
-using Peabux.Presentation.ActionFilters;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 
 namespace Peabux.API.Extensions;
@@ -41,8 +39,8 @@ public static class RegisterDependentServices
         builder.Services.ConfigureIdentity();
         builder.Services.ConfigureJWTAuthentication();;
         builder.Services.ConfigureSwagger();
+        builder.Services.AddScoped<IJwtFactory, JwtFactory>();
         builder.Services.AddScoped<IAuthService, AuthService>();
-        
 
         return builder;
     }
